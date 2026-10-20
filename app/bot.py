@@ -9,7 +9,7 @@ from telegram.ext import Application, CallbackQueryHandler, CommandHandler, Cont
 from . import catalog, config, hours, notify
 
 log = logging.getLogger("agos.bot")
-WEBAPP_VERSION = "2"  # bump to bust Telegram's WebView cache after a frontend release
+WEBAPP_VERSION = "3"  # bump to bust Telegram's WebView cache after a frontend release
 
 
 def webapp_url() -> str:
