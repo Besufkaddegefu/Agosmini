@@ -20,7 +20,7 @@ const T = {
     pdfno: "We couldn't send the PDF to your chat. Please press Start in the bot chat, or contact us.", catsent: "Catalog sent to your chat ✅",
     failed: "Something went wrong. Please try again.", delivery: "We couldn't reach our team just now. Please call us.", rate: "Too many bookings. Please try again later.",
     unauth: "Please open this app from Telegram.", retry: "Try again", checkagain: "🔄 Check Again", call: "📞 Call", from: "From",
-    choosepkg: "👇 Choose a package to book:", fixfields: "Please check the highlighted fields", dev: "Dev" },
+    choosepkg: "👇 Choose a package to book:", bookingClosed: "Booking unavailable during working hours", fixfields: "Please check the highlighted fields", dev: "Dev" },
   am: { next: "ቀጣይ", back: "ተመለስ", submit: "ትዕዛዙን ላክ", sending: "በመላክ ላይ…", s1: "የእርስዎ መረጃ", s2: "ዝርዝር", s3: "ክፍያ", details: "ዝርዝር",
     day: "ቀን", month: "ወር", year: "ዓመት", hour: "ሰዓት", period: "የቀኑ ክፍል", gregorian: "የግሪጎሪያን ቀን",
     req: "ይህ መስክ ያስፈልጋል", badphone: "ትክክለኛ ስልክ ቁጥር ያስገቡ", baduser: "ትክክለኛ የቴሌግራም መለያ ያስገቡ (ለምሳሌ፡ @username)",
@@ -31,7 +31,7 @@ const T = {
     pdfno: "PDFውን ወደ ቻትዎ መላክ አልተቻለም። እባክዎ በቦቱ ቻት Start ይጫኑ ወይም ያግኙን።", catsent: "የአገልግሎት ዝርዝሩ ወደ ቻትዎ ተልኳል ✅",
     failed: "ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።", delivery: "አሁን ቡድናችንን ማግኘት አልተቻለም። እባክዎ ይደውሉልን።", rate: "ብዙ ትዕዛዞች ተልከዋል። እባክዎ ቆየት ብለው ይሞክሩ።",
     unauth: "እባክዎ ይህንን መተግበሪያ ከቴሌግራም ይክፈቱ።", retry: "እንደገና ይሞክሩ", checkagain: "🔄 እንደገና ይፈትሹ", call: "📞 ይደውሉ", from: "ከ",
-    choosepkg: "👇 ለማዘዝ አንዱን ይምረጡ፦", fixfields: "እባክዎ ምልክት የተደረገባቸውን መስኮች ያስተካክሉ", dev: "Dev" },
+    choosepkg: "👇 ለማዘዝ አንዱን ይምረጡ፦", bookingClosed: "በስራ ሰዓት ማዘዝ አይቻልም", fixfields: "እባክዎ ምልክት የተደረገባቸውን መስኮች ያስተካክሉ", dev: "Dev" },
 };
 
 const S = {
@@ -81,7 +81,7 @@ async function render(keep = false) {
   document.querySelectorAll(".seg button").forEach((b) => b.classList.toggle("on", b.dataset.lang === S.lang));
   document.documentElement.lang = S.lang;
   let html = "", bar = null;
-  if (offline() && r.view !== "contact") ({ html, bar } = screenClosed());
+  if (offline() && r.view === "book") ({ html, bar } = screenClosed());
   else if (r.view === "svc" && SERVICES.includes(r.a)) html = screenService(r.a);
   else if (r.view === "pkg" && pkg(r.a)) ({ html, bar } = screenPackage(r.a));
   else if (r.view === "book" && SERVICES.includes(r.a) && pkg(r.b) && pkg(r.b).service === r.a) ({ html, bar } = screenBooking(r.a, r.b, curStep()));
@@ -113,28 +113,34 @@ function screenHome() {
   const b = ui("btns");
   const from = (svc) => `${t("from")} ${money(Math.min(...pkgs(svc).map((p) => p.price)))}`;
   const tile = (svc, i, ic) => `<button class="tile" data-go="svc/${svc}"><span class="ic">${ic}</span><span><b>${esc(stripEmoji(b[i]))}</b><small>${from(svc)}</small></span><span class="chev">›</span></button>`;
-  return `<section class="card hero rich">${renderMd(ui("welcome"))}</section>
+  return `${offline() ? offlineNotice() : ""}<section class="card hero rich">${renderMd(ui("welcome"))}</section>
     <div class="tiles">${tile("decor", 0, "🎁")}${tile("limo", 1, "🚗")}${tile("photo", 2, "📸")}</div>
     <div class="duo"><button class="mini" data-go="contact">${esc(b[3])}</button><button class="mini" data-act="catalog">${esc(b[4])}</button></div>`;
 }
 
 function pkgCard(p) {
   const bullets = previewBullets(p.text[S.lang]).map((x) => `<li>${esc(x)}</li>`).join("");
+  const action = offline()
+    ? `<button class="btn primary" disabled title="${esc(t("bookingClosed"))}">${esc(ui("book_now"))}</button>`
+    : `<button class="btn primary" data-act="book" data-pkg="${p.id}">${esc(ui("book_now"))}</button>`;
   return `<article class="card pkg"><div class="top2"><h3>${esc(p.title[S.lang])}</h3><span class="price">${money(p.price)}</span></div>
     <ul class="pre">${bullets}</ul>
-    <div class="row"><button class="btn" data-go="pkg/${p.id}">${t("details")}</button><button class="btn primary" data-act="book" data-pkg="${p.id}">${esc(ui("book_now"))}</button></div></article>`;
+    <div class="row"><button class="btn" data-go="pkg/${p.id}">${t("details")}</button>${action}</div></article>`;
 }
 
 function screenService(svc) {
-  return `${crumb("", stripEmoji(ui("back")))}<h1>${esc(ui("btns")[SERVICES.indexOf(svc)])}</h1><p class="lead">${esc(t("choosepkg"))}</p>${pkgs(svc).map(pkgCard).join("")}`;
+  return `${crumb("", stripEmoji(ui("back")))}${offlineNotice()}<h1>${esc(ui("btns")[SERVICES.indexOf(svc)])}</h1><p class="lead">${esc(t("choosepkg"))}</p>${pkgs(svc).map(pkgCard).join("")}`;
 }
 
 function screenPackage(id) {
   const p = pkg(id);
+  const action = offline()
+    ? `<button class="btn primary" disabled title="${esc(t("bookingClosed"))}">${esc(ui("book_now"))}</button>`
+    : `<button class="btn primary" data-act="book" data-pkg="${p.id}">${esc(ui("book_now"))}</button>`;
   return {
-    html: `${crumb("svc/" + p.service, stripEmoji(S.cfg.strings.back_to_packages[S.lang]))}<article class="card rich">${renderMd(p.text[S.lang])}</article>
+    html: `${crumb("svc/" + p.service, stripEmoji(S.cfg.strings.back_to_packages[S.lang]))}${offlineNotice()}<article class="card rich">${renderMd(p.text[S.lang])}</article>
       <button class="btn ghost" data-go="">${esc(ui("back"))}</button>`,
-    bar: `<button class="btn primary" data-act="book" data-pkg="${p.id}">${esc(ui("book_now"))}</button>`,
+    bar: action,
   };
 }
 
@@ -269,6 +275,11 @@ function screenClosed() {
     <div class="card closed-reason"><strong>${esc(reason)}</strong></div><div class="stack">
       <a class="btn primary" href="tel:${phone.replace(/\s/g, "")}">${t("call")} ${esc(phone)}</a>
       <button class="btn" data-act="check">${t("checkagain")}</button><button class="btn ghost" data-go="contact">${esc(ui("btns")[3])}</button></div>`, bar: null };
+}
+
+function offlineNotice() {
+  const reason = S.lang === "am" ? S.cfg.hours.reason_am : S.cfg.hours.reason_en;
+  return `<div class="card closed-reason"><strong>${esc(reason)}</strong><br><span class="hint">${esc(t("bookingClosed"))}</span></div>`;
 }
 
 function screenContact() {

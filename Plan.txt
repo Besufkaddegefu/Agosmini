@@ -268,7 +268,7 @@ Deployment and BotFather steps (WP7–8)
 - Correct limo prices (bot vs catalog) and any other price changes.
 - Keep "discover more" cross-sell per device, or per Telegram user once a database exists?
 - Add booking history and status tracking (WP9)?
-- Should customers be allowed to browse (but not book) during working hours? Current rule: whole app blocked except Contact.
+- Customers may browse the home screen, services, package prices and descriptions during working hours, but booking routes and POST /api/bookings remain blocked with the bilingual call notice.
 
 17. Agent operating rules
 - Do not retype or "improve" bot text, prices, phone numbers or bank details. Use the data files.
