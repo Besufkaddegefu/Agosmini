@@ -1,0 +1,279 @@
+AGOS Booking Mini App — Build Plan
+Specification for AI coding agents. Source of truth for converting the existing AGOS Postpartum Care Telegram booking bot (main.py) into a Telegram Mini App. Written for Besufkad.
+
+0. How to use this document
+Read sections 1–3 first (state, scope, rules). They tell you what exists, what to build, and what must never change.
+Build in the order of section 14 (work packages). Each package lists the files it owns, its dependencies and acceptance criteria. Do not start a package before its dependencies pass.
+Never retype bot text. All English and Amharic strings, descriptions and prices come from the original main.py through tools/extract_content.py (section 5).
+When this plan and the original bot disagree, section 3 says which one wins. When both are silent, ask the owner (section 16 lists open decisions).
+
+1. Current state (read before touching anything)
+Delivered to the owner: agos-miniapp-stage1.zip. It contains only: tools/extract_content.py, app/data/packages.json, app/data/ui_strings.json, app/config.py, app/hours.py, app/auth.py, tests/test_core.py (9 passing tests), requirements.txt, the logo, the catalog PDF and tools/original_main.py (copy of the original bot).
+Not delivered: An earlier working session also produced a backend and a frontend prototype, but that work was lost in a sandbox reset before it was packaged. Treat everything below stage 1 as unbuilt. Sections 6–11 are written precisely enough to rebuild it, including the design decisions and verified algorithms from that session.
+
+Area | Status
+Content extraction (verbatim EN/AM) | Done, verified (10 packages, byte-for-byte check)
+Config, working-hours gate, Telegram initData auth | Done, tested
+Forms schema, strings, catalog loader, Ethiopian calendar, booking validation, PDF, admin delivery, bot launcher, FastAPI server, frontend, deployment | To build
+Real-Telegram testing, deployment, BotFather setup | To do (needs the owner's bot token and host)
+
+2. Goal and success criteria
+Customers open a Mini App from the bot, browse the three services, pick a package, fill a booking form, pay a 50% deposit by bank transfer, upload the payment screenshot, and receive a PDF receipt. Admins receive the booking exactly as they do today, plus Confirm/Reject buttons.
+Done means all of these are true:
+- Every function of the original bot exists in the Mini App (feature map, section 4).
+- All package descriptions are identical to the original EN/AM text.
+- Language switching works everywhere and is remembered.
+- The service is blocked during working hours (section 3.1), in the UI and on the server.
+- A booking in each of the 3 services reaches all 3 admins (photo + details + PDF) and the customer (PDF).
+- The PDF is professionally formatted and renders Amharic correctly.
+- The app works on iOS and Android Telegram, light and dark theme, small screens (360 px wide), slow networks.
+- All automated tests pass and the manual QA checklist (section 13.4) is signed off on a real phone.
+
+3. Business rules (non-negotiable)
+3.1 Working hours
+Offline window: 08:00–20:00 Africa/Addis_Ababa on the standard clock = 2:00 AM–2:00 PM Ethiopian time. The team answers phones then; customers must call.
+Outside that window (20:00–08:00 standard = 2:00 PM–2:00 AM Ethiopian) customers book directly.
+Ethiopian clock rule: Ethiopian hour = ((standard hour − 6) mod 12), with 0 shown as 12. So 08:00 -> 2 (morning), 20:00 -> 2 (evening).
+While offline: the whole app shows the bilingual "Bot is Currently Offline" screen with a tap-to-call button, a "Check Again" button and access to the Contact page. POST /api/bookings returns 403 {error:"offline"}. The bot's /start shows the same message.
+Hours are configurable (OFFLINE_START_HOUR, OFFLINE_END_HOUR) but default to 8 and 20. Existing app/hours.py already implements this; keep it.
+
+3.2 Payment
+Customer pays 50% of the package price by bank deposit, then uploads a screenshot. Booking is not complete until the deposit is received.
+Bank details, default values (override by env): Commercial Bank of Ethiopia (CBE), account name Sara Mohammed, account number from the original code (BANK_ACCOUNT_NUMBER). Keep them in config.py only, never hard-code elsewhere.
+PDF terms: provisional until payment is confirmed; deposit within 24 hours; balance due on the day of service; cancellations under 48 hours may incur charges.
+
+3.3 Prices
+Server is the source of truth for prices; the client never sends a price.
+Known issue: the original bot's limo prices (25,000 / 30,000 / 35,000 ETB) disagree with the catalog PDF (35,000 / 45,000 / 50,000 ETB). The owner will decide later. Build tools/set_price.py (WP2) so that one command updates both the numeric price and the price inside the verbatim EN/AM title lines. Do not change any price before the owner confirms.
+
+3.4 Booking references
+<PREFIX>-<YYYYMMDDHHMMSS> in Africa/Addis_Ababa time, prefixes DEC, LIMO, PHOTO.
+
+3.5 Where the Mini App intentionally differs from the bot
+Original | Mini App
+8–9 chat questions one by one | 2 form steps + payment step, with inline validation
+Free-text date ("21/08/2018, Morning 4:00 AM") | Ethiopian-calendar pickers (day, month, year, hour, period) that produce the same text format, and show the Gregorian equivalent
+Typed Telegram username | Pre-filled from Telegram; optional; falls back to the real Telegram account
+Payment screenshot sent as a chat photo | Uploaded in the app, compressed in the browser
+Duplicate start, show_menu, after_hours_handler functions | Removed; one implementation each
+
+4. Feature map (every original function must exist)
+Original bot feature | Mini App feature | Owner module
+Language choice (EN / አማርኛ), change_lang | Header toggle, saved in localStorage, defaults from Telegram language_code | app.js
+Welcome + menu (5 buttons) | Home: hero with the original welcome text, 3 service tiles with "From X ETB", Contact, Catalog | app.js
+Show decor / limo / photo packages | Service screen listing package cards (original title, price, first bullets) | app.js
+Per-package view (original full text, links, "Book Now") | Package detail renders the verbatim text; sticky Book Now button | app.js, md.js
+Booking flows d_*, l_*, ph_* | Stepper forms driven by forms.json | app.js, forms.json
+Package pre-selection or selection inside the flow | Pre-selected from package screen; selectable in the form (radio list with prices) | app.js
+Bank notice + screenshot upload | Payment step: summary, copy-account button, original notice text, upload with preview | app.js
+PDF generation (3 types) | One professional PDF builder | app/pdf.py
+Admin notification (3 admins: photo + summary + PDF) | Same, plus Confirm/Reject/Message-client buttons | app/notify.py
+Client receives PDF + caption | Same | app/notify.py
+"Discover more" cross-sell with 4 message variants | Done screen with the same logic and original strings | app.js
+Services catalog PDF | Button sends the PDF into the user's chat | POST /api/catalog
+Contact page | Contact screen with tap-to-call and links | app.js
+Working-hours gate + "Check Again" | Closed screen + server enforcement + bot message | hours.py, main.py, bot.py
+Webhook hosting on Render | FastAPI hosts the webhook, API and static app | main.py
+
+5. Content pipeline (exactness guarantee)
+tools/extract_content.py parses tools/original_main.py with ast.literal_eval and writes:
+app/data/packages.json: for each of 10 packages id, service, price, title{en,am}, text{en,am} (verbatim, Telegram-Markdown), links[]. IDs: decor_basic, decor_deluxe, decor_premium, limo_grand, limo_special, limo_royal, photo_digital, photo_standard, photo_premium, videography (service photo).
+app/data/ui_strings.json: welcome, btns (5), contact_text, agree_btn, back, change_lang, q_back, discover_after_decor/limo/photo, discover_complete (has {booked_services}), book_now for en and am.
+It asserts a byte-for-byte round trip. Never edit the extracted text by hand. Re-run the script if the original changes.
+The strings that live inside handlers (not in CONTENT) must also be copied verbatim by script or by careful copy from tools/original_main.py, into app/data/strings.json (WP1):
+offline (bilingual offline notice, with {phone}), payment_notice (with {account_name}, {account_number}), per-service upload_prompt, upload_error, client_caption ("✅ Your booking is awaiting confirmation. / ማረጋገጫ በመጠበቅ ላይ።"), catalog_caption, catalog_missing, welcome_choose.
+discover_single (three one-service-left messages, EN+AM), discover_generic, discover_buttons (Book Decor / Limousine / Photography / Contact Us, EN+AM), back_to_packages.
+app/data/forms.json defines each service form (section 7.2). Question texts and Amharic labels are copied from the d_step*, l_step*, ph_step* handlers.
+
+Markdown rendering
+The original strings use Telegram Markdown plus quirks. webapp/js/md.js must render, without leftover markup: *bold*, _italic_, [text](url), bare URLs, lines starting with • or - as bullets, ____/━━━ rules, and the legacy markers ••Title••, •Label:•, •Item found in contact and discover texts. Escape HTML first. Test against all 10 package texts and the UI strings in both languages: no *, [, or stray • may remain.
+
+6. Architecture
+One Python service, one process (--workers 1), HTTPS required by Telegram.
+
+Telegram client ──opens──> /app/  (static Mini App)
+     │                        │ fetch (initData header)
+     │                        v
+     │                 FastAPI  /api/*  ──> reportlab PDF
+     │                        │
+     └── webhook /agos-bot ──> python-telegram-bot 22.8 (no polling)
+                              │ send_photo / send_document / send_message
+                              v
+                        3 admins + the customer
+
+Repository layout:
+agos-miniapp/
+├── app/
+│   ├── main.py        FastAPI, lifespan (bot init + webhook), routes, static mount
+│   ├── config.py      env + constants (exists)
+│   ├── hours.py       offline gate (exists)
+│   ├── auth.py        initData HMAC validation (exists)
+│   ├── catalog.py     loads JSON, money(), deposit(), public_config()
+│   ├── ethcal.py      Ethiopian calendar conversion
+│   ├── bookings.py    validation, normalisation, record, rate limit, dedupe
+│   ├── pdf.py         booking PDF
+│   ├── notify.py      admin + client delivery, Confirm/Reject
+│   ├── bot.py         /start, menu button, callbacks
+│   ├── data/          packages.json, ui_strings.json, strings.json, forms.json
+│   └── fonts/         NotoSans + NotoSansEthiopic (Regular, Bold)
+├── webapp/            index.html, css/app.css, js/{app,api,md,ethcal}.js, assets/
+├── tools/             extract_content.py, set_price.py, original_main.py
+├── tests/             pytest + Playwright
+├── requirements.txt, .env.example, render.yaml, README.md
+
+Dependencies: python-telegram-bot==22.8, httpx==0.28.1, fastapi, uvicorn[standard], python-multipart, reportlab, pytz, Pillow, pydantic (via FastAPI), dev: pytest, playwright. Keep Python 3.10-compatible syntax (no nested same-type quotes in f-strings).
+
+7. Data contracts
+7.1 Environment variables
+Names match the original bot. BOT_TOKEN, ADMIN_ID_1/2/3, PUBLIC_BASE_URL (falls back to RENDER_EXTERNAL_URL, then WEBHOOK_BASE_URL), WEBHOOK_PATH (default agos-bot), WEBHOOK_SECRET_TOKEN (letters, digits, _, - only), PORT (10000), LOGO_PATH, SERVICES_PDF_PATH. New: BANK_NAME, BANK_ACCOUNT_NAME, BANK_ACCOUNT_NUMBER, OFFLINE_START_HOUR, OFFLINE_END_HOUR, DEV_MODE (local only, see 13.1). Never log the token.
+
+7.2 forms.json
+Per service (decor, limo, photo): prefix, icon, title{en,am}, pdf_title, admin_title (HTML), file_prefix, client_file, fields[], steps[][] (field ids per step), admin_rows, pdf_rows (sections of [label, fieldId]). Field: id, type (text|phone|username|textarea|choice|package|datetime), label{en,am}, optional hint, optional, options[{v,en,am}].
+
+Service | Step 1 | Step 2
+decor | name, gender (Male/Female/Not Sure), phone, username, alt phone | address, house type (Villa/Apartment/Condominium/G+1/G+2), package, date
+limo | name, phone, username | date, pickup & destination, package
+photo | name, phone, username | event date, event address, package
+
+Step 3 is always payment. Labels, hints and examples (e.g. "(e.g., 21/08/2018, Morning 4:00 AM)") are copied from the original prompts.
+
+7.3 HTTP API
+Every /api/* request carries header X-Telegram-Init-Data. Invalid or older than 24 h -> 401.
+
+Route | Purpose
+GET /health | {ok:true}
+GET /api/config | {packages, forms, strings, ui, bank{name,account_name,account_number,deposit_percent}, contact{phones,website}, hours, user{id,first_name,username}}
+POST /api/bookings | multipart: payload (JSON string) + screenshot (image)
+POST /api/catalog | sends the catalog PDF to the user's chat, {sent:bool}
+POST /{WEBHOOK_PATH} | Telegram updates; checks X-Telegram-Bot-Api-Secret-Token
+GET /app/* | static Mini App, Cache-Control: no-cache
+
+payload: service, package, name, phone, username, alt_phone, address, gender, house, lang, date{day,month,year,hour(1-12),period(morning|afternoon|evening|night)}.
+
+Responses for POST /api/bookings:
+Code | Body
+200 | {ref, service, price, deposit, pdf_sent}; a repeat of the same submission within 10 min returns {ref, duplicate:true, pdf_sent:true} without re-notifying admins
+403 | {error:"offline", hours}
+422 | {error:"validation", errors:{field:code}} (codes invalid, past)
+429 | {error:"rate_limited"} (6 bookings/hour/user)
+502 | {error:"delivery_failed"} only when zero admins were reached
+
+7.4 Validation (same rules client and server; server is authoritative)
+Name 2–80 chars, address 3–400, whitespace collapsed.
+Phone: Ethiopian mobile (+251|251|0)?[79]\d{8} normalised to +2517…/+2519…; otherwise any +?\d{8,15}.
+Telegram username optional; @ optional on input; [A-Za-z0-9_]{3,32}; stored with @.
+Choice fields must be one of the defined option values; package must exist and belong to the chosen service.
+Date must be a valid Ethiopian date (months 1–12 have 30 days, Pagume has 5 or 6) and not in the past (compare in Addis Ababa time).
+Screenshot <= 10 MB, must decode as an image; server converts to JPEG, max 2000 px, quality 85.
+Date text format (matches the original): DD/MM/YYYY, Morning 4:00 (Amharic variant ጥዋት 4፡00). Also keep the Gregorian equivalent.
+
+7.5 Ethiopian calendar (verified algorithm, implement in Python and JS)
+To Gregorian: jdn = 1723856 + 365*y + floor(y/4) + 30*m + d − 31; Python date = date.fromordinal(jdn − 1721425); JS date = (jdn − 2440588) days after 1970-01-01 UTC.
+From Gregorian: compute jdn; r = (jdn − 1723856) mod 1461; n = r mod 365 + 365*floor(r/1460); year = 4*floor((jdn − 1723856)/1461) + floor(r/365) − floor(r/1460); month = floor(n/30)+1; day = n mod 30 + 1.
+Leap year: y mod 4 == 3 (Pagume has 6 days).
+Known checks: 2019-01-01 (Meskerem 1) = 11 Sep 2026; 2018-08-21 = 29 Apr 2026; 2015-13-06 = 11 Sep 2023 (previous day). Test a 5,000-date round trip in both languages.
+
+8. Backend specification
+catalog.py: lru_cache JSON loaders; deposit(price) = round(price*0.5); money(n) -> "25,000 ETB"; public_config().
+bookings.py: pydantic model, parse_and_validate(json) -> clean | BookingError, build_record(clean, user) (ref, price, deposit, balance, display values, user), in-memory rate_limited, dedupe_key (sha256 of user+payload+image), seen_recently, remember.
+main.py: lifespan builds the PTB Application with updater(None), initializes, starts, sets webhook (with secret, drop_pending_updates) and the chat menu button (MenuButtonWebApp). current_user dependency validates initData (or X-Dev-User only if DEV_MODE=1). Order inside POST /api/bookings: hours gate -> rate limit -> read file (limit 10 MB+1) -> validate image -> validate payload -> dedupe -> build record -> build PDF -> deliver -> remember. Return the 422 shape above.
+bot.py: /start and /menu -> offline message or welcome with an inline web_app button (never a reply-keyboard web_app button: those do not provide initData). Handlers for check_again and cfm|rej:<ref>:<userId> (admins only). Any private text message replies like /start. Webhook is the only update path.
+Failure rules: one admin failing never blocks others; client PDF failure sets pdf_sent:false and the UI tells the customer to press Start in the bot; only 0 admins reached is an error.
+
+9. PDF specification (app/pdf.py)
+reportlab platypus, A4, one page for normal bookings.
+Fonts: register Noto, Noto-B, Eth, Eth-B from app/fonts (Noto Sans and Noto Sans Ethiopic). Wrap Ethiopic runs (\u1200–\u139F, \u2D80–\u2DDF, \uAB00–\uAB2F) in <font name="Eth">; strip glyphs outside the fonts (emoji, ≈); escape XML.
+Header on every page: logo (webp -> PNG via Pillow, left), "AGOS POSTPARTUM CARE" and website (right), gold rule. Footer: official-document line, both phone numbers, website and email, reference and page number.
+Body: service title; status pill "PENDING - Awaiting 50% Deposit Confirmation"; meta block (reference, date, time Addis Ababa); dark section bars with gold underline; zebra tables; sections from pdf_rows, hiding empty optional rows; 3. PAYMENT INFORMATION (status, bank, account name/number, package price, remaining balance, bold required deposit); 4. TERMS AND CONDITIONS (4 bullets from 3.2). Keep sections together; no orphan headings.
+Palette: gold #B8892E, ink #1C1C1C, cream #FBF5EC, line #E6D9C3.
+Test: generate all 3 services with Amharic names/addresses and long text (400 chars); rasterise with pdftoppm and check visually; text must be extractable.
+
+10. Admin delivery (app/notify.py)
+For each admin, in parallel: send_photo (screenshot) with an HTML caption, then send_document (PDF named <Service>_<Name>.pdf). Customer gets the PDF with the original caption.
+Caption mirrors the original summary: title, reference, date, time, section 1 client information, section 2 service details, section 3 payment information (bank, account, price, deposit, status PENDING), the verification reminder, client phone and Telegram. Use parse_mode=HTML with html.escape on every user value.
+Telegram caption limit is 1024 characters. If longer, the photo gets a short caption and the full text is a separate message that carries the buttons.
+Inline buttons: ✅ Confirm payment (cfm:<ref>:<userId>), ❌ Reject (rej:…), 💬 Message client (URL https://t.me/<username>, else tg://user?id=<id>; if Telegram rejects the tg:// link as private, resend without it). callback_data stays under 64 bytes.
+On decision: only admins in ADMIN_IDS may act; notify the customer (bilingual, confirmed or could-not-verify with phone); edit every admin copy to append "CONFIRMED/REJECTED by <name>" and remove the buttons; a second decision answers "Already confirmed/rejected". Keep an in-memory registry of message ids (best effort; decisions must still work after a restart, they just update only the pressed message).
+
+11. Frontend specification
+Vanilla HTML/CSS/ES modules, no build step. Include https://telegram.org/js/telegram-web-app.js.
+
+11.1 Routes (hash router)
+#/ home · #/svc/<service> packages · #/pkg/<id> detail · #/book/<service>/<pkg>/<step 1–3> form · #/done/<ref> success · #/contact. When offline every route except contact renders the closed screen.
+
+11.2 Behaviour
+Load /api/config once per minute (always on home and closed screens). Show skeletons while loading; on 401 show "open from Telegram"; on network failure show retry.
+Telegram integration: ready(), expand(), disableVerticalSwipes(), theme sync (colorScheme, setHeaderColor, setBackgroundColor, themeChanged event), native BackButton (previous step or history back), HapticFeedback on taps and success/error, enableClosingConfirmation() while a form has unsaved input, openLink / openTelegramLink for external links.
+Form: stepper with 3 steps; fields from forms.json; chips for short choices; radio cards for packages (title + price); date pickers (day list adapts to month length, years = current Ethiopian year to +3) with the Gregorian equivalent shown; Ethiopian phone auto-format to +251… on blur; pre-fill name and username from Telegram; draft per service saved in localStorage and cleared after success; inline error messages in the current language; focus and scroll to the first error; Next validates the current step only; Submit validates everything and jumps to the step with the first error.
+Payment step: package price, 50% deposit (large), balance; bank card with copy buttons; original bilingual notice (rendered by md.js); screenshot picker with preview, compressed in-browser (canvas, max 1600 px, JPEG 0.82).
+Submit: disable button, show "Sending…", map 422/403/429/502 to messages, never lose form data on error. After success remember booked services in localStorage.
+Done screen: check animation, reference, original client caption, PDF-sent note (or fallback note), cross-sell with the original logic: 2 services left -> discover_after_<booked>; 1 left -> matching single message; 0 left -> discover_complete with the booked list and Contact button; Menu button always.
+Contact: hours, tap-to-call numbers, Instagram, TikTok, Telegram, website, map link, all from the original contact text.
+Visual design: cream and gold palette from the catalog and logo, dark mode, large 48 px touch targets, bottom sheet-style sticky action bar with safe-area padding, card layout, 20 px radii, skeleton loaders, reduced-motion support. Fonts: system stack plus Noto Sans Ethiopic fallback. Amharic text must never be clipped or truncated.
+Accessibility: labels on all inputs, aria-live for the content region, sufficient contrast in both themes, keyboard operable.
+
+12. Security and privacy
+Validate initData on every API call; reject anything older than 24 h; use constant-time comparison. Never trust client user ids or prices.
+Verify the webhook secret header. Escape all user text in Telegram HTML and in the DOM (textContent or an escape helper; the Markdown renderer escapes first).
+Limit upload size, decode the image server-side, re-encode as JPEG (strips metadata).
+Rate limit and dedupe (section 7.3). In-memory is acceptable for one instance; document this.
+Do not log tokens, phone numbers or screenshots. No bookings are stored on disk in v1 (admins receive them in Telegram).
+The original bot printed its token to the logs: rotate the token in BotFather (/revoke) before going live. Move bank details to env vars.
+
+13. Testing plan
+13.1 Dev mode
+DEV_MODE=1 accepts an X-Dev-User JSON header and writes PDFs, images and admin text to /tmp/agos_dev_out instead of calling Telegram; the frontend uses ?dev=1. Must be impossible to enable by accident in production (log a loud warning).
+
+13.2 Unit and API (pytest)
+Existing 9 tests plus: auth (valid, tampered, expired); hours boundaries (7, 8, 13, 19, 20, 23, 0) and Ethiopian clock mapping; calendar round trip; each service books successfully; duplicate submit not re-sent; every validation error; bad image; offline blocks server-side; phone normalisation; notify with a fake bot (all admins + customer, one admin failing, long caption fallback, confirm notifies customer once, second decision refused).
+
+13.3 Browser end-to-end (Playwright, 390×844, dev mode)
+For EN and AM: home -> each service -> package -> book -> fill -> upload -> success; back button behaviour; validation errors; offline screen with a mocked clock; language switch mid-form keeps data; refresh restores draft; copy-account button; cross-sell variants; contact links; no console errors; no horizontal scroll at 360 px.
+
+13.4 Manual QA on a real phone (Android and iPhone)
+Open from inline button and from the menu button; light and dark theme; submit a booking in all 3 services outside working hours; confirm 3 admins receive photo, details, PDF and buttons; Confirm and Reject notify the customer; open the PDF on the phone (Amharic correct); try during working hours (blocked); try as a user who blocked the bot (UI shows the PDF fallback).
+
+14. Work packages for agents
+Order matters. Each agent works only on the files it owns.
+
+WP | Task | Owns | Depends on | Acceptance
+0 | Unzip stage 1, pip install -r requirements.txt, run tests | — | — | 9 tests pass
+1 | Data: strings.json, forms.json (section 5, 7.2), catalog.py, ethcal.py | app/data, catalog.py, ethcal.py | 0 | Texts match the original byte-for-byte (scripted check); calendar tests pass
+2 | bookings.py + tools/set_price.py | those files | 1 | Validation tests pass; set_price.py --dry-run shows changes to price and both title lines
+3 | pdf.py + fonts | pdf.py, app/fonts | 2 | 3 services render on one page with Amharic; visual check
+4 | notify.py, bot.py, main.py | those files | 2, 3 | API and fake-bot tests pass in dev mode
+5 | Frontend: md.js, ethcal.js, api.js, app.js, app.css, index.html | webapp/ | 1, 4 | Node tests for md.js and calendar; Playwright flows pass
+6 | Visual polish: extract photos from the catalog PDF into webapp/assets/packages/ (WebP, <= 80 KB each) and use them on package cards and the hero | webapp/assets | 5 | Lighthouse performance >= 85 on mobile profile; no layout shift
+7 | Deploy: render.yaml/start command uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1, .env.example, health check, README with BotFather steps | root files | 5 | Deployed URL serves /app/ over HTTPS; /health ok
+8 | Real-Telegram integration test and QA checklist (13.4) | — | 7 | Checklist signed off; bugs fixed
+9 | Optional v2: SQLite booking store (survives restarts, powers Confirm/Reject registry), /pending admin command, booking status, reminders | new modules | 8 | Decide with the owner first
+
+Deployment and BotFather steps (WP7–8)
+- Rotate the bot token (/revoke), set it as BOT_TOKEN on the host.
+- Set ADMIN_ID_1..3, PUBLIC_BASE_URL, WEBHOOK_SECRET_TOKEN, bank variables.
+- Deploy; the server sets the webhook and menu button on startup.
+- In BotFather: /setdomain is not needed for Mini Apps opened by inline or menu buttons; optionally create a direct link with /newapp so the app has a t.me/<bot>/<app> link.
+- Free hosting tiers sleep when idle; add an external pinger to /health or use a paid instance, otherwise the first open is slow.
+- Keep a single worker: rate limits, dedupe and the decision registry are in memory.
+
+15. Risks and known limits
+- Untested against real Telegram until WP8: updater(None) webhook mode in PTB 22.8, MenuButtonWebApp, tg://user?id= links in admin buttons.
+- initData expires after 24 h: a customer who leaves the app open for days must reopen it (the UI shows a clear message).
+- A customer who never pressed Start or blocked the bot cannot receive the PDF; booking still reaches admins.
+- In-memory state (rate limit, dedupe, decision registry) resets on restart.
+- Cross-sell state is per device (localStorage), unlike the original per-chat session.
+- Catalog and package photos in the PDF are large (the catalog is ~3.4 MB); compress before shipping inside the app.
+
+16. Open decisions for the owner
+- Correct limo prices (bot vs catalog) and any other price changes.
+- Keep "discover more" cross-sell per device, or per Telegram user once a database exists?
+- Add booking history and status tracking (WP9)?
+- Should customers be allowed to browse (but not book) during working hours? Current rule: whole app blocked except Contact.
+
+17. Agent operating rules
+- Do not retype or "improve" bot text, prices, phone numbers or bank details. Use the data files.
+- Run pytest and the Node tests after every package; do not mark a package done on a failing test.
+- Verify visually: render PDFs to PNG and screenshot the app at 390×844 and 360×740 in EN and AM before claiming it works.
+- Keep Python 3.10-compatible syntax.
+- Never print or commit secrets; use .env.example with placeholders.
+- Report what you could not verify (anything needing a real Telegram client) instead of assuming it works.

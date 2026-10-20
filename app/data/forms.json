@@ -1,0 +1,555 @@
+{
+  "decor": {
+    "prefix": "DEC",
+    "icon": "🎁",
+    "title": {
+      "en": "Decor Booking",
+      "am": "ዲኮር ለማዘዝ"
+    },
+    "pdf_title": "DECOR SERVICE",
+    "admin_title": "🔔 <b>NEW DECOR SERVICE BOOKING / አዲስ የዲኮር ትዕዛዝ</b> 🔔",
+    "file_prefix": "Decor",
+    "client_file": "AGOS_Decor_Booking.pdf",
+    "fields": [
+      {
+        "id": "name",
+        "type": "text",
+        "label": {
+          "en": "Full Name",
+          "am": "ሙሉ ስም"
+        }
+      },
+      {
+        "id": "gender",
+        "type": "choice",
+        "label": {
+          "en": "Gender of the Newborn",
+          "am": "የሕፃኑ ጾታ"
+        },
+        "options": [
+          {
+            "v": "Male",
+            "en": "Male",
+            "am": "ወንድ"
+          },
+          {
+            "v": "Female",
+            "en": "Female",
+            "am": "ሴት"
+          },
+          {
+            "v": "NotSure",
+            "en": "Not Sure",
+            "am": "እርግጠኛ አይደለሁም"
+          }
+        ]
+      },
+      {
+        "id": "phone",
+        "type": "phone",
+        "label": {
+          "en": "Client Phone Number",
+          "am": "የደንበኛ ስልክ ቁጥር"
+        }
+      },
+      {
+        "id": "username",
+        "type": "username",
+        "optional": true,
+        "label": {
+          "en": "Your Telegram Username (e.g., @username)",
+          "am": "የቴሌግራም መለያዎ (ለምሳሌ፡ @username)"
+        }
+      },
+      {
+        "id": "alt_phone",
+        "type": "phone",
+        "optional": true,
+        "label": {
+          "en": "Alternative Phone Number",
+          "am": "አማራጭ የስልክ ቁጥር"
+        }
+      },
+      {
+        "id": "address",
+        "type": "textarea",
+        "label": {
+          "en": "House Address for Decor Setup",
+          "am": "ዲኮር የሚሰራበት የቤት አድራሻ"
+        }
+      },
+      {
+        "id": "house",
+        "type": "choice",
+        "label": {
+          "en": "House Type",
+          "am": "የቤት አይነት"
+        },
+        "options": [
+          {
+            "v": "Villa",
+            "en": "Villa",
+            "am": "ቪላ"
+          },
+          {
+            "v": "Apartment",
+            "en": "Apartment",
+            "am": "አፓርትመንት"
+          },
+          {
+            "v": "Condominium",
+            "en": "Condominium",
+            "am": "ኮንዶሚየም"
+          },
+          {
+            "v": "G+1",
+            "en": "G+1",
+            "am": "G+1"
+          },
+          {
+            "v": "G+2",
+            "en": "G+2",
+            "am": "G+2"
+          }
+        ]
+      },
+      {
+        "id": "package",
+        "type": "package",
+        "label": {
+          "en": "Select your preferred Decor Package",
+          "am": "የሚፈልጉትን የዲኮር ፓኬጅ ይምረጡ"
+        }
+      },
+      {
+        "id": "date",
+        "type": "datetime",
+        "hint": {
+          "en": "(e.g., 21/08/2018, Morning 4:00 AM)",
+          "am": "(ለምሳሌ፡ 21/08/2018, ጥዋት 4፡00)"
+        },
+        "label": {
+          "en": "Preferred Date & Time for the Decor setup",
+          "am": "ዲኮሩን የሚፈልጉበት ቀን እና ሰአት"
+        }
+      }
+    ],
+    "steps": [
+      [
+        "name",
+        "gender",
+        "phone",
+        "username",
+        "alt_phone"
+      ],
+      [
+        "address",
+        "house",
+        "package",
+        "date"
+      ]
+    ],
+    "admin_rows": [
+      [
+        "1. CLIENT INFORMATION",
+        [
+          [
+            "Full Name",
+            "name"
+          ],
+          [
+            "Baby Gender",
+            "gender"
+          ],
+          [
+            "Primary Contact",
+            "phone"
+          ],
+          [
+            "Telegram",
+            "username"
+          ],
+          [
+            "Alternative Contact",
+            "alt_phone"
+          ]
+        ]
+      ],
+      [
+        "2. SERVICE DETAILS",
+        [
+          [
+            "Package",
+            "package"
+          ],
+          [
+            "Service Address",
+            "address"
+          ],
+          [
+            "House Type",
+            "house"
+          ],
+          [
+            "Preferred Date",
+            "date"
+          ]
+        ]
+      ]
+    ],
+    "pdf_rows": [
+      [
+        "1. CLIENT INFORMATION",
+        [
+          [
+            "Full Name",
+            "name"
+          ],
+          [
+            "Gender of Newborn",
+            "gender"
+          ],
+          [
+            "Primary Contact Number",
+            "phone"
+          ],
+          [
+            "Telegram Username",
+            "username"
+          ],
+          [
+            "Alternative Contact Number",
+            "alt_phone"
+          ]
+        ]
+      ],
+      [
+        "2. SERVICE DETAILS",
+        [
+          [
+            "Selected Package",
+            "package"
+          ],
+          [
+            "Service Address",
+            "address"
+          ],
+          [
+            "House Type",
+            "house"
+          ],
+          [
+            "Preferred Date & Time",
+            "date"
+          ]
+        ]
+      ]
+    ]
+  },
+  "limo": {
+    "prefix": "LIMO",
+    "icon": "🚗",
+    "title": {
+      "en": "Limousine Booking",
+      "am": "ሊሙዚን ማዘዣ"
+    },
+    "pdf_title": "LIMOUSINE SERVICE",
+    "admin_title": "🔔 <b>NEW LIMOUSINE SERVICE BOOKING / አዲስ የሊሙዚን ትዕዛዝ</b> 🔔",
+    "file_prefix": "Limousine",
+    "client_file": "AGOS_Limousine_Booking.pdf",
+    "fields": [
+      {
+        "id": "name",
+        "type": "text",
+        "label": {
+          "en": "Full Name",
+          "am": "ሙሉ ስም"
+        }
+      },
+      {
+        "id": "phone",
+        "type": "phone",
+        "label": {
+          "en": "Phone Number",
+          "am": "ስልክ ቁጥር"
+        }
+      },
+      {
+        "id": "username",
+        "type": "username",
+        "optional": true,
+        "label": {
+          "en": "Your Telegram Username (e.g., @username)",
+          "am": "የቴሌግራም መለያዎ (ለምሳሌ፡ @username)"
+        }
+      },
+      {
+        "id": "date",
+        "type": "datetime",
+        "hint": {
+          "en": "(e.g., 21/08/2018, Morning 4:00 AM)",
+          "am": "(ለምሳሌ፡ 21/08/2018, ጥዋት 4፡00)"
+        },
+        "label": {
+          "en": "Preferred Date & Time",
+          "am": "የሚፈልጉት ቀን እና ሰዓት"
+        }
+      },
+      {
+        "id": "address",
+        "type": "textarea",
+        "label": {
+          "en": "Pickup Address & Destination",
+          "am": "የሚነሱበት አድራሻ & መዳረሻ / የቤትዎ አድራሻ"
+        },
+        "hint": {
+          "en": "(e.g., from 4 Kilo Hemen Hospital to Kality)",
+          "am": "(ለምሳሌ፡ ከ 4 ኪሎ ሄመን ሆስፒታል ወደ ቃሊቲ)"
+        }
+      },
+      {
+        "id": "package",
+        "type": "package",
+        "label": {
+          "en": "Select Package",
+          "am": "ፓኬጅ ይምረጡ"
+        }
+      }
+    ],
+    "steps": [
+      [
+        "name",
+        "phone",
+        "username"
+      ],
+      [
+        "date",
+        "address",
+        "package"
+      ]
+    ],
+    "admin_rows": [
+      [
+        "1. CLIENT INFORMATION",
+        [
+          [
+            "Full Name",
+            "name"
+          ],
+          [
+            "Contact Number",
+            "phone"
+          ],
+          [
+            "Telegram",
+            "username"
+          ]
+        ]
+      ],
+      [
+        "2. SERVICE DETAILS",
+        [
+          [
+            "Package",
+            "package"
+          ],
+          [
+            "Scheduled Date",
+            "date"
+          ],
+          [
+            "Pickup & Destination",
+            "address"
+          ]
+        ]
+      ]
+    ],
+    "pdf_rows": [
+      [
+        "1. CLIENT INFORMATION",
+        [
+          [
+            "Full Name",
+            "name"
+          ],
+          [
+            "Contact Number",
+            "phone"
+          ],
+          [
+            "Telegram Username",
+            "username"
+          ]
+        ]
+      ],
+      [
+        "2. SERVICE DETAILS",
+        [
+          [
+            "Selected Package",
+            "package"
+          ],
+          [
+            "Scheduled Date & Time",
+            "date"
+          ],
+          [
+            "Pickup Address & Destination",
+            "address"
+          ]
+        ]
+      ]
+    ]
+  },
+  "photo": {
+    "prefix": "PHOTO",
+    "icon": "📸",
+    "title": {
+      "en": "Photograph / videography Services Booking",
+      "am": "የፎቶግራፍ አገልግሎት ማዘዣ"
+    },
+    "pdf_title": "PHOTOGRAPHY & VIDEOGRAPHY",
+    "admin_title": "🔔 <b>NEW PHOTOGRAPHY & VIDEOGRAPHY BOOKING / አዲስ የፎቶግራፍ ትዕዛዝ</b> 🔔",
+    "file_prefix": "Photography",
+    "client_file": "AGOS_Photography_Booking.pdf",
+    "fields": [
+      {
+        "id": "name",
+        "type": "text",
+        "label": {
+          "en": "Full Name",
+          "am": "ሙሉ ስም"
+        }
+      },
+      {
+        "id": "phone",
+        "type": "phone",
+        "label": {
+          "en": "Phone Number",
+          "am": "ስልክ ቁጥር"
+        }
+      },
+      {
+        "id": "username",
+        "type": "username",
+        "optional": true,
+        "label": {
+          "en": "Your Telegram Username (e.g., @username)",
+          "am": "የቴሌግራም መለያዎ (ለምሳሌ፡ @username)"
+        }
+      },
+      {
+        "id": "date",
+        "type": "datetime",
+        "hint": {
+          "en": "(e.g., 21/08/2018, Morning 4:00 AM)",
+          "am": "(ለምሳሌ፡ 21/08/2018, ጥዋት 4፡00)"
+        },
+        "label": {
+          "en": "Event Date & Time",
+          "am": "የዝግጅቱ ቀን እና ሰዓት"
+        }
+      },
+      {
+        "id": "address",
+        "type": "textarea",
+        "label": {
+          "en": "Event Address",
+          "am": "የዝግጅቱ አድራሻ"
+        }
+      },
+      {
+        "id": "package",
+        "type": "package",
+        "label": {
+          "en": "Select Package",
+          "am": "ፓኬጅ ይምረጡ"
+        }
+      }
+    ],
+    "steps": [
+      [
+        "name",
+        "phone",
+        "username"
+      ],
+      [
+        "date",
+        "address",
+        "package"
+      ]
+    ],
+    "admin_rows": [
+      [
+        "1. CLIENT INFORMATION",
+        [
+          [
+            "Full Name",
+            "name"
+          ],
+          [
+            "Contact Number",
+            "phone"
+          ],
+          [
+            "Telegram",
+            "username"
+          ]
+        ]
+      ],
+      [
+        "2. SERVICE DETAILS",
+        [
+          [
+            "Package",
+            "package"
+          ],
+          [
+            "Event Date",
+            "date"
+          ],
+          [
+            "Event Address",
+            "address"
+          ]
+        ]
+      ]
+    ],
+    "pdf_rows": [
+      [
+        "1. CLIENT INFORMATION",
+        [
+          [
+            "Full Name",
+            "name"
+          ],
+          [
+            "Contact Number",
+            "phone"
+          ],
+          [
+            "Telegram Username",
+            "username"
+          ]
+        ]
+      ],
+      [
+        "2. SERVICE DETAILS",
+        [
+          [
+            "Selected Package",
+            "package"
+          ],
+          [
+            "Event Date & Time",
+            "date"
+          ],
+          [
+            "Event Address",
+            "address"
+          ]
+        ]
+      ]
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "offline": "⏰ *Bot is Currently Offline*\n\n⏰ *ቦቱ በዚህ ሰአት ከአገልግሎት ውጭ ነው*\n\n📞 Please call us at: *{phone}*\n\n📞 እባክዎን በዚህ ቁጥር ይደውሉልን: *{phone}*\n\nOur team is available during working hours to assist you directly.\n\nቡድናችን በዚህ ሰዓት እርሶን በቀጥታ ለመርዳት ዝግጁ ናችው።\n\n🤖 The bot will be available again after 8:00 PM Ethiopian Time.\n\n🤖 ቦቱ ከምሽቱ 2:00 ሰዓት በኋላ ነው አገልግሎት የሚሰጠው።\n\nThank you for understanding! 🙏\nስለተረዱን እናመሰግናለን! 🙏",
+  "payment_notice": "⚠️ *IMPORTANT / አስፈላጊ* ⚠️\n\n🏦 *Bank Account Details / የባንክ አካውንት ዝርዝር*:\n\n🏧 *Commercial Bank of Ethiopia (CBE) / የኢትዮጵያ ንግድ ባንክ *\n👤 Account Name: {account_name} \n🔢 Account Number: {account_number}\n\n💵 Amount: 50% of the selected package \n\n✅ After filling this form, please send a screenshot of your 50% deposit payment to confirm your booking.\n‼️ Note: Booking will not be considered complete until the deposit is received.\n\n✅ ይህንን ቅጽ ከሞሉ በኋላ፣ ትዕዛዝዎን ለማረጋገጥ የ50% የተቀማጭ ክፍያ ስክሪን ሾት ይላኩ።\n‼️ ማሳሰቢያ፡- ተቀማጭ ገንዘብ እስኪደርስ ድረስ ትዕዛዝዎ እንደተጠናቀቀ አይቆጠርም።\n",
+  "upload_prompt": {
+    "decor": "📤 Upload your Payment Screenshot / የክፍያ ስክሪን ሾት ይላኩ:",
+    "limo": "📤 Upload Payment Screenshot / የክፍያ ስክሪን ሾት ይላኩ:",
+    "photo": "📤 Upload Payment Screenshot / የክፍያ ስክሪን ሾት ይላኩ:"
+  },
+  "upload_error": "Please upload a photo. / እባክዎ ፎቶ ይላኩ።",
+  "client_caption": "✅ Your booking is awaiting confirmation. / ማረጋገጫ በመጠበቅ ላይ።",
+  "catalog_caption": "📋 Our complete services catalog / ሙሉ የአገልግሎት ዝርዝር",
+  "catalog_missing": "PDF catalog will be available soon. / የአገልግሎት ዝርዝር በቅርቡ ይገኛል።",
+  "welcome_choose": "🌿 Welcome! Choose Language / ቋንቋ ይምረጡ:",
+  "discover_single": {
+    "decor": {
+      "en": "Why not add beautiful decor to complete your celebration?",
+      "am": "ዝግጅታችሁን ለማስዋብ ዲኮር አሁን ይዘዙ!"
+    },
+    "limo": {
+      "en": "Make a grand entrance with our limousine service!",
+      "am": "በሊሙዚን አገልግሎታችን በታላቅ አቀባበል ይግቡ!"
+    },
+    "photo": {
+      "en": "Capture every moment with our photography!",
+      "am": "ትዝታዎችን በፎቶግራፍ ይቅረጹ!"
+    }
+  },
+  "discover_generic": {
+    "en": "Explore our other services!",
+    "am": "ሌሎች አገልግሎቶቻችንን ይመልከቱ!"
+  },
+  "discover_buttons": {
+    "decor": {
+      "en": "🎁 Book Decor",
+      "am": "🎁 ዲኮር ይዘዙ"
+    },
+    "limo": {
+      "en": "🚗 Book Limousine",
+      "am": "🚗 ሊሙዚን ይዘዙ"
+    },
+    "photo": {
+      "en": "📸 Book Photography",
+      "am": "📸 የፎቶግራፍ አገልግሎት ይዘዙ"
+    },
+    "contact": {
+      "en": "📞 Contact Us",
+      "am": "📞 ያግኙን"
+    }
+  },
+  "back_to_packages": {
+    "en": "🔙 Back to Packages",
+    "am": "🔙 ወደ ፓኬጆች ተመለስ"
+  }
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "id": "decor_hospital",
+    "service": "decor",
+    "price": 10000,
+    "title": {
+      "en": "Special Hospital Decoration",
+      "am": "እስፔሻል የሆስፒታል ዲኮር"
+    },
+    "text": {
+      "en": "🔸 *Special Hospital Decoration (10,000 ETB)*\n__________________________\n\n• Unique balloons\n• Welcome baby balloons\n• Floor decoration\n• Mini bouquet\n• Helium balloons",
+      "am": "🔸 *እስፔሻል የሆስፒታል ዲኮር (10,000 ብር)*\n__________________________\n\n• ለየት ያሉ ፊኛዎች\n• ዌልካም ቤቢ ባሉን\n• የመሬት ዲኮር\n• እቅፍ አበባ\n• ሂልየም ባሉን"
+    },
+    "links": []
+  },
+  {
+    "id": "decor_basic",
+    "service": "decor",
+    "price": 15000,
+    "title": {
+      "en": "Home Decor",
+      "am": "የቤት ዲኮር"
+    },
+    "text": {
+      "en": "🔸 *Home Decor (15,000 ETB)*\n__________________________\n\n• Home Decor (Bedroom, Corridor and Living Room)\n• Floor decoration",
+      "am": "🔸 *የቤት ዲኮር (15,000 ብር)*\n__________________________\n\n• ዲኮር (መኝታ ክፍል፣ ኮሪደር እና ሳሎን)\n• የመሬት አበባ"
+    },
+    "links": []
+  },
+  {
+    "id": "decor_deluxe",
+    "service": "decor",
+    "price": 20000,
+    "title": {
+      "en": "Medium Home Decor",
+      "am": "መካከለኛ የቤት ዲኮር"
+    },
+    "text": {
+      "en": "💎 *Medium Home Decor (20,000 ETB)*\n__________________________\n\n• Home Decor (Bedroom, Corridor and Living Room)\n• Medium size bouquet and floor decor\n• 2 Kg Normal Cake",
+      "am": "💎 *መካከለኛ የቤት ዲኮር (20,000 ብር)*\n__________________________\n\n• ዲኮር (መኝታ ክፍል፣ ኮሪደር እና ሳሎን)\n• መካከለኛ መጠን ያለው እቅፍ አበባ እና የመሬት አበባ\n• 2 ኪሎ ኬክ"
+    },
+    "links": []
+  },
+  {
+    "id": "decor_premium",
+    "service": "decor",
+    "price": 25000,
+    "title": {
+      "en": "Premium Home Decor",
+      "am": "ፕሪሚየም የቤት ዲኮር"
+    },
+    "text": {
+      "en": "👑 *Premium Home Decor (25,000 ETB)*\n__________________________\n\n• Home Decor (Bedroom, Corridor and Living Room)\n• Large size bouquet and floor decor\n• 2 Kg Custom made Cake\n• Bedroom decor with Agober rent for 2 weeks",
+      "am": "👑 *ፕሪሚየም የቤት ዲኮር (25,000 ብር)*\n__________________________\n\n• ዲኮር (መኝታ ክፍል፣ ኮሪደር እና ሳሎን)\n• ትልቅ መጠን ያለው እቅፍ አበባ እና የመሬት አበባ\n• 2 ኪሎ ኬክ በመረጡት ዲዛይን\n• የአልጋ ዲኮር ከ2 ሳምንት የአጎበር ኪራይ ጋር"
+    },
+    "links": []
+  },
+  {
+    "id": "decor_special",
+    "service": "decor",
+    "price": 48000,
+    "title": {
+      "en": "Special Home Decoration",
+      "am": "ልዩ የቤት ዲኮር"
+    },
+    "text": {
+      "en": "👑 *Special Home Decoration (48,000 ETB)*\n__________________________\n\n• Organic balloon bouquet\n• Alcohol-free champagne\n• Fireworks arrangement\n• 2 Kg special fondant cake\n• Teddy bear\n• Complete corridor, living room and bedroom decor\n• Large bouquet\n• Helium balloons",
+      "am": "👑 *ልዩ የቤት ዲኮር (48,000 ብር)*\n__________________________\n\n• ኦርጋኒክ የፊኛ እቅፍ\n• ከአልኮል ነፃ ሻምፓኝ\n• ርችት\n• 2 ኪሎ ልዩ ፎንዳንት ኬክ\n• ቴዲ ቢር / የድብ አሻንጉሊት\n• ልዩ እና ሙሉ የኮሪደር፣ ሳሎን እና መኝታ ቤት ዲኮር\n• ትልቅ እቅፍ አበባ\n• ሂልየም ባሉን"
+    },
+    "links": []
+  },
+  {
+    "id": "limo_grand",
+    "service": "limo",
+    "price": 35000,
+    "title": {
+      "en": "The Grand Arrival",
+      "am": "ታላቅ አቀባበል"
+    },
+    "text": {
+      "en": "🚗 *The Grand Arrival (35,000 ETB)*\n__________________________\n\nMake the entrance unforgettable with our exclusive limousine service — a grand ride home for the new mother.",
+      "am": "🚗 *ታላቅ አቀባበል (35,000 ብር)*\n__________________________\n\nእጅግ የማይረሳ መግቢያ ለማድረግ የእኛን ልዩ የሊሞዚን አገልግሎት በመጨመር የእንኳን ደህና መጡ ፓኬጅዎን ያሳድጉ"
+    },
+    "links": []
+  },
+  {
+    "id": "limo_special",
+    "service": "limo",
+    "price": 45000,
+    "title": {
+      "en": "Special Limousine Service",
+      "am": "ለአዳዲስ እናቶች ልዩ የሊሙዚን አገልግሎት"
+    },
+    "text": {
+      "en": "🚗 *Special Limousine Service (45,000 ETB)*\n__________________________\n\nSpecial limousine service for new mothers.\n\nPrices may vary depending on conditions such as weekdays, seasonal demand, and the time the order is placed.",
+      "am": "🚗 *ለአዳዲስ እናቶች ልዩ የሊሙዚን አገልግሎት (45,000 ብር)*\n__________________________\n\nለአዳዲስ እናቶች ልዩ የሊሙዚን አገልግሎት።\n\nዋጋው እንደ የስራ ወይም የእረፍት ቀናት፣ ወቅታዊ ሁኔታ እና ትዕዛዝ የሚሰጥበት ሰዓት ሊለያይ ይችላል።"
+    },
+    "links": []
+  },
+  {
+    "id": "limo_royal",
+    "service": "limo",
+    "price": 50000,
+    "title": {
+      "en": "Special Limousine Service Premium",
+      "am": "ልዩ የሊሙዚን አገልግሎት ፕሪሚየም"
+    },
+    "text": {
+      "en": "🚗 *Special Limousine Service Premium (50,000 ETB)*\n__________________________\n\nSpecial limousine service for new mothers.\n\nPrices may vary depending on conditions such as weekdays, seasonal demand, and the time the order is placed.",
+      "am": "🚗 *ልዩ የሊሙዚን አገልግሎት ፕሪሚየም (50,000 ብር)*\n__________________________\n\nለአዳዲስ እናቶች ልዩ የሊሙዚን አገልግሎት።\n\nዋጋው እንደ የስራ ወይም የእረፍት ቀናት፣ ወቅታዊ ሁኔታ እና ትዕዛዝ የሚሰጥበት ሰዓት ሊለያይ ይችላል።"
+    },
+    "links": []
+  },
+  {
+    "id": "photo_digital",
+    "service": "photo",
+    "price": 12000,
+    "title": {
+      "en": "Digital Photography",
+      "am": "ዲጂታል ፎቶግራፍ"
+    },
+    "text": {
+      "en": "📸 *Digital Photography (12,000 ETB)*\n__________________________\n\n• All photos in soft copy (no printed photos)",
+      "am": "📸 *ዲጂታል ፎቶግራፍ (12,000 ብር)*\n__________________________\n\n• ሁሉም ፎቶዎች በሶፍት ኮፒ ብቻ (የታተሙ ፎቶዎች የለውም)"
+    },
+    "links": []
+  },
+  {
+    "id": "photo_standard",
+    "service": "photo",
+    "price": 16000,
+    "title": {
+      "en": "Standard Photography",
+      "am": "ስታንዳርድ ፎቶግራፍ"
+    },
+    "text": {
+      "en": "📸 *Standard Photography (16,000 ETB)*\n__________________________\n\n• Normal album sized photo (100 printed photos)\n• Soft copy of all photos",
+      "am": "📸 *ስታንዳርድ ፎቶግራፍ (16,000 ብር)*\n__________________________\n\n• መደበኛ አልበም (100 የታተሙ ፎቶዎች)\n• የሁሉም ፎቶዎች ሶፍት ኮፒ"
+    },
+    "links": []
+  },
+  {
+    "id": "photo_premium",
+    "service": "photo",
+    "price": 17000,
+    "title": {
+      "en": "Premium Photography",
+      "am": "ፕሪሚየም ፎቶግራፍ"
+    },
+    "text": {
+      "en": "📸 *Premium Photography (17,000 ETB)*\n__________________________\n\n• Laminated photo album (20x30 cm)\n• Soft copy of all photos",
+      "am": "📸 *ፕሪሚየም ፎቶግራፍ (17,000 ብር)*\n__________________________\n\n• ላሚኔት የተደረገ የፎቶ አልበም (20x30 ሳ.ሜ)\n• የሁሉም ፎቶዎች ሶፍት ኮፒ"
+    },
+    "links": []
+  },
+  {
+    "id": "videography",
+    "service": "photo",
+    "price": 15000,
+    "title": {
+      "en": "Videography Package",
+      "am": "የቪዲዮግራፊ ፓኬጅ"
+    },
+    "text": {
+      "en": "🎥 *Videography Package (15,000 ETB)*\n__________________________\n\n• Full video coverage\n• Edited video (soft copy)",
+      "am": "🎥 *የቪዲዮግራፊ ፓኬጅ (15,000 ብር)*\n__________________________\n\n• ሙሉ የቪዲዮ ቀረጻ\n• ኤዲት የተደረገ ቪዲዮ (ሶፍት ኮፒ)"
+    },
+    "links": []
+  }
+]
