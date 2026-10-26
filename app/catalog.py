@@ -1,6 +1,7 @@
 """Read-only access to the extracted bot content (packages, forms, strings)."""
 import json
 from functools import lru_cache
+from urllib.parse import urlparse
 from . import config
 
 
@@ -10,7 +11,55 @@ def _load(name: str):
 
 
 def packages() -> dict:
-    return {p["id"]: p for p in _load("catalog_pdf.json")}
+    return {p["id"]: _with_safe_media(p) for p in _load("catalog_pdf.json")}
+
+
+def _safe_media_url(value, *, local_prefix="/app/assets/"):
+    if not isinstance(value, str) or not value:
+        return None
+    if local_prefix and value.startswith(local_prefix) and not value.startswith("//"):
+        return value
+    parsed = urlparse(value)
+    if parsed.scheme == "https" and parsed.netloc:
+        return value
+    return None
+
+
+def _localized_text(value):
+    if not isinstance(value, dict):
+        return {}
+    return {lang: text for lang, text in value.items() if lang in {"en", "am"} and isinstance(text, str)}
+
+
+def _with_safe_media(package: dict) -> dict:
+    """Preserve package data while exposing only valid optional media metadata."""
+    media = package.get("media")
+    if not isinstance(media, dict):
+        return package
+
+    images = []
+    for item in media.get("images", []):
+        if not isinstance(item, dict):
+            continue
+        src = _safe_media_url(item.get("src"))
+        if src:
+            images.append({"src": src, "alt": _localized_text(item.get("alt"))})
+
+    videos = []
+    for item in media.get("videos", []):
+        if not isinstance(item, dict):
+            continue
+        url = _safe_media_url(item.get("url"), local_prefix=None)
+        poster = _safe_media_url(item.get("poster"))
+        if url:
+            video = {"url": url, "title": _localized_text(item.get("title"))}
+            if poster:
+                video["poster"] = poster
+            videos.append(video)
+
+    result = dict(package)
+    result["media"] = {"images": images, "videos": videos}
+    return result
 
 
 def forms() -> dict:

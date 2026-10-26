@@ -114,3 +114,41 @@ Telegram Mini Apps require HTTPS in real use.
 - Keep exactly one worker.
 - The catalog source of truth is [Agos_Surprise_Packages.pdf](./Agos_Surprise_Packages.pdf).
 - The deployed catalog PDF is [webapp/assets/services_catalog.pdf](./webapp/assets/services_catalog.pdf).
+
+## Package photos and videos
+
+Package media is optional and does not affect booking validation or payment
+submission. Add media to the matching package record in
+[app/data/catalog_pdf.json](./app/data/catalog_pdf.json), using the existing
+package ID:
+
+```json
+"media": {
+  "images": [
+    {
+      "src": "/app/assets/media/decor_basic/01.webp",
+      "alt": {
+        "en": "Home decoration example",
+        "am": "የቤት ዲኮር ምሳሌ"
+      }
+    }
+  ],
+  "videos": [
+    {
+      "url": "https://www.youtube.com/watch?v=VIDEO_ID",
+      "poster": "/app/assets/media/decor_basic/video-poster.webp",
+      "title": {
+        "en": "Previous home decoration service",
+        "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"
+      }
+    }
+  ]
+}
+```
+
+Images must use `/app/assets/...` paths or HTTPS URLs. Videos must use HTTPS
+URLs. YouTube and Vimeo links are embedded with a poster/preview; direct HTTPS
+video files use the browser's inline player. Keep media optimized for mobile,
+and publish only photos/videos for which AGOS has permission. The ready-made
+package folders and their complete mapping are documented in
+[webapp/assets/media/README.md](./webapp/assets/media/README.md).

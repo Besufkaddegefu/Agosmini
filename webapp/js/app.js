@@ -120,12 +120,33 @@ function screenHome() {
 
 function pkgCard(p) {
   const bullets = previewBullets(p.text[S.lang]).map((x) => `<li>${esc(x)}</li>`).join("");
+  const cover = p.media?.images?.[0];
+  const coverHtml = cover ? `<img class="pkg-cover" src="${esc(cover.src)}" alt="${esc(cover.alt?.[S.lang] || p.title[S.lang])}" loading="lazy">` : "";
   const action = offline()
     ? `<button class="btn primary" disabled title="${esc(t("bookingClosed"))}">${esc(ui("book_now"))}</button>`
     : `<button class="btn primary" data-act="book" data-pkg="${p.id}">${esc(ui("book_now"))}</button>`;
-  return `<article class="card pkg"><div class="top2"><h3>${esc(p.title[S.lang])}</h3><span class="price">${money(p.price)}</span></div>
+  return `<article class="card pkg">${coverHtml}<div class="top2"><h3>${esc(p.title[S.lang])}</h3><span class="price">${money(p.price)}</span></div>
     <ul class="pre">${bullets}</ul>
     <div class="row"><button class="btn" data-go="pkg/${p.id}">${t("details")}</button>${action}</div></article>`;
+}
+
+function mediaHtml(p) {
+  const images = (p.media?.images || []).filter((item) => item?.src);
+  const videos = (p.media?.videos || []).filter((item) => /^https:\/\//.test(item?.url || ""));
+  const gallery = images.length ? `<div class="media-gallery">${images.map((item, i) =>
+    `<img src="${esc(item.src)}" alt="${esc(item.alt?.[S.lang] || p.title[S.lang])}" loading="${i ? "lazy" : "eager"}">`).join("")}</div>` : "";
+  const videoCards = videos.map((item) => {
+    const title = item.title?.[S.lang] || (S.lang === "am" ? "ቀደም ሲል የተሰራ አገልግሎት" : "Previous service");
+    const url = item.url;
+    const youtube = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]+)/);
+    const vimeo = url.match(/vimeo\.com\/(\d+)/);
+    if (youtube || vimeo) {
+      const embed = youtube ? `https://www.youtube.com/embed/${youtube[1]}` : `https://player.vimeo.com/video/${vimeo[1]}`;
+      return `<div class="media-video"><iframe src="${esc(embed)}" title="${esc(title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p>${esc(title)}</p></div>`;
+    }
+    return `<div class="media-video"><video controls playsinline preload="metadata"${item.poster ? ` poster="${esc(item.poster)}"` : ""}><source src="${esc(url)}"></video><p>${esc(title)}</p></div>`;
+  }).join("");
+  return gallery || videoCards ? `<section class="media">${gallery}${videoCards ? `<div class="media-videos">${videoCards}</div>` : ""}</section>` : "";
 }
 
 function screenService(svc) {
@@ -138,7 +159,7 @@ function screenPackage(id) {
     ? `<button class="btn primary" disabled title="${esc(t("bookingClosed"))}">${esc(ui("book_now"))}</button>`
     : `<button class="btn primary" data-act="book" data-pkg="${p.id}">${esc(ui("book_now"))}</button>`;
   return {
-    html: `${crumb("svc/" + p.service, stripEmoji(S.cfg.strings.back_to_packages[S.lang]))}${offlineNotice()}<article class="card rich">${renderMd(p.text[S.lang])}</article>
+    html: `${crumb("svc/" + p.service, stripEmoji(S.cfg.strings.back_to_packages[S.lang]))}${offlineNotice()}${mediaHtml(p)}<article class="card rich">${renderMd(p.text[S.lang])}</article>
       <button class="btn ghost" data-go="">${esc(ui("back"))}</button>`,
     bar: action,
   };

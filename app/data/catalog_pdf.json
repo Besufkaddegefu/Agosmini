@@ -11,7 +11,30 @@
       "en": "🔸 *Special Hospital Decoration (10,000 ETB)*\n__________________________\n\n• Unique balloons\n• Welcome baby balloons\n• Floor decoration\n• Mini bouquet\n• Helium balloons",
       "am": "🔸 *እስፔሻል የሆስፒታል ዲኮር (10,000 ብር)*\n__________________________\n\n• ለየት ያሉ ፊኛዎች\n• ዌልካም ቤቢ ባሉን\n• የመሬት ዲኮር\n• እቅፍ አበባ\n• ሂልየም ባሉን"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/decor_hospital/01.webp",
+          "alt": {"en": "", "am": ""}
+        },
+        {
+          "src": "/app/assets/media/decor_hospital/02.webp",
+          "alt": {"en": "Hospital decoration example", "am": ""}
+        }
+      ],
+      "videos": [
+        {
+          "url": "https://www.youtube.com/watch?v=VIDEO_ID_1",
+          "title": {"en": "Hospital decoration", "am": "የሆስፒታል ዲኮር ምሳሌ"}
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=VIDEO_ID_1",
+          "title": {"en": "Previous home decoration service", "am": "የቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
+    
   },
   {
     "id": "decor_basic",
@@ -25,7 +48,25 @@
       "en": "🔸 *Home Decor (15,000 ETB)*\n__________________________\n\n• Home Decor (Bedroom, Corridor and Living Room)\n• Floor decoration",
       "am": "🔸 *የቤት ዲኮር (15,000 ብር)*\n__________________________\n\n• ዲኮር (መኝታ ክፍል፣ ኮሪደር እና ሳሎን)\n• የመሬት አበባ"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/decor_basic/01.webp",
+          "alt": {"en": "", "am": ""}
+        },
+        {
+          "src": "/app/assets/media/decor_basic/02.webp",
+          "alt": {"en": "", "am": ""}
+        }
+      ],
+      "videos": [
+        {
+          "url": "https://www.youtube.com/watch?v=VIDEO_ID_1",
+          "title": {"en": "Previous home decoration service", "am": "የቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "decor_deluxe",
@@ -39,7 +80,25 @@
       "en": "💎 *Medium Home Decor (20,000 ETB)*\n__________________________\n\n• Home Decor (Bedroom, Corridor and Living Room)\n• Medium size bouquet and floor decor\n• 2 Kg Normal Cake",
       "am": "💎 *መካከለኛ የቤት ዲኮር (20,000 ብር)*\n__________________________\n\n• ዲኮር (መኝታ ክፍል፣ ኮሪደር እና ሳሎን)\n• መካከለኛ መጠን ያለው እቅፍ አበባ እና የመሬት አበባ\n• 2 ኪሎ ኬክ"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/decor_deluxe/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/decor_deluxe/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "decor_premium",
@@ -53,7 +112,25 @@
       "en": "👑 *Premium Home Decor (25,000 ETB)*\n__________________________\n\n• Home Decor (Bedroom, Corridor and Living Room)\n• Large size bouquet and floor decor\n• 2 Kg Custom made Cake\n• Bedroom decor with Agober rent for 2 weeks",
       "am": "👑 *ፕሪሚየም የቤት ዲኮር (25,000 ብር)*\n__________________________\n\n• ዲኮር (መኝታ ክፍል፣ ኮሪደር እና ሳሎን)\n• ትልቅ መጠን ያለው እቅፍ አበባ እና የመሬት አበባ\n• 2 ኪሎ ኬክ በመረጡት ዲዛይን\n• የአልጋ ዲኮር ከ2 ሳምንት የአጎበር ኪራይ ጋር"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/decor_premium/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/decor_premium/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "decor_special",
@@ -67,7 +144,25 @@
       "en": "👑 *Special Home Decoration (48,000 ETB)*\n__________________________\n\n• Organic balloon bouquet\n• Alcohol-free champagne\n• Fireworks arrangement\n• 2 Kg special fondant cake\n• Teddy bear\n• Complete corridor, living room and bedroom decor\n• Large bouquet\n• Helium balloons",
       "am": "👑 *ልዩ የቤት ዲኮር (48,000 ብር)*\n__________________________\n\n• ኦርጋኒክ የፊኛ እቅፍ\n• ከአልኮል ነፃ ሻምፓኝ\n• ርችት\n• 2 ኪሎ ልዩ ፎንዳንት ኬክ\n• ቴዲ ቢር / የድብ አሻንጉሊት\n• ልዩ እና ሙሉ የኮሪደር፣ ሳሎን እና መኝታ ቤት ዲኮር\n• ትልቅ እቅፍ አበባ\n• ሂልየም ባሉን"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/decor_special/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/decor_special/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "limo_grand",
@@ -81,7 +176,25 @@
       "en": "🚗 *The Grand Arrival (35,000 ETB)*\n__________________________\n\nMake the entrance unforgettable with our exclusive limousine service — a grand ride home for the new mother.",
       "am": "🚗 *ታላቅ አቀባበል (35,000 ብር)*\n__________________________\n\nእጅግ የማይረሳ መግቢያ ለማድረግ የእኛን ልዩ የሊሞዚን አገልግሎት በመጨመር የእንኳን ደህና መጡ ፓኬጅዎን ያሳድጉ"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/limo_grand/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/limo_grand/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        } 
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "limo_special",
@@ -95,7 +208,25 @@
       "en": "🚗 *Special Limousine Service (45,000 ETB)*\n__________________________\n\nSpecial limousine service for new mothers.\n\nPrices may vary depending on conditions such as weekdays, seasonal demand, and the time the order is placed.",
       "am": "🚗 *ለአዳዲስ እናቶች ልዩ የሊሙዚን አገልግሎት (45,000 ብር)*\n__________________________\n\nለአዳዲስ እናቶች ልዩ የሊሙዚን አገልግሎት።\n\nዋጋው እንደ የስራ ወይም የእረፍት ቀናት፣ ወቅታዊ ሁኔታ እና ትዕዛዝ የሚሰጥበት ሰዓት ሊለያይ ይችላል።"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/limo_special/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/limo_special/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "limo_royal",
@@ -109,7 +240,25 @@
       "en": "🚗 *Special Limousine Service Premium (50,000 ETB)*\n__________________________\n\nSpecial limousine service for new mothers.\n\nPrices may vary depending on conditions such as weekdays, seasonal demand, and the time the order is placed.",
       "am": "🚗 *ልዩ የሊሙዚን አገልግሎት ፕሪሚየም (50,000 ብር)*\n__________________________\n\nለአዳዲስ እናቶች ልዩ የሊሙዚን አገልግሎት።\n\nዋጋው እንደ የስራ ወይም የእረፍት ቀናት፣ ወቅታዊ ሁኔታ እና ትዕዛዝ የሚሰጥበት ሰዓት ሊለያይ ይችላል።"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/limo_royal/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/limo_royal/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "photo_digital",
@@ -123,7 +272,25 @@
       "en": "📸 *Digital Photography (12,000 ETB)*\n__________________________\n\n• All photos in soft copy (no printed photos)",
       "am": "📸 *ዲጂታል ፎቶግራፍ (12,000 ብር)*\n__________________________\n\n• ሁሉም ፎቶዎች በሶፍት ኮፒ ብቻ (የታተሙ ፎቶዎች የለውም)"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/photo_digital/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/photo_digital/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "photo_standard",
@@ -137,7 +304,25 @@
       "en": "📸 *Standard Photography (16,000 ETB)*\n__________________________\n\n• Normal album sized photo (100 printed photos)\n• Soft copy of all photos",
       "am": "📸 *ስታንዳርድ ፎቶግራፍ (16,000 ብር)*\n__________________________\n\n• መደበኛ አልበም (100 የታተሙ ፎቶዎች)\n• የሁሉም ፎቶዎች ሶፍት ኮፒ"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/photo_standard/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/photo_standard/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "photo_premium",
@@ -151,7 +336,25 @@
       "en": "📸 *Premium Photography (17,000 ETB)*\n__________________________\n\n• Laminated photo album (20x30 cm)\n• Soft copy of all photos",
       "am": "📸 *ፕሪሚየም ፎቶግራፍ (17,000 ብር)*\n__________________________\n\n• ላሚኔት የተደረገ የፎቶ አልበም (20x30 ሳ.ሜ)\n• የሁሉም ፎቶዎች ሶፍት ኮፒ"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/photo_premium/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/photo_premium/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   },
   {
     "id": "videography",
@@ -165,6 +368,24 @@
       "en": "🎥 *Videography Package (15,000 ETB)*\n__________________________\n\n• Full video coverage\n• Edited video (soft copy)",
       "am": "🎥 *የቪዲዮግራፊ ፓኬጅ (15,000 ብር)*\n__________________________\n\n• ሙሉ የቪዲዮ ቀረጻ\n• ኤዲት የተደረገ ቪዲዮ (ሶፍት ኮፒ)"
     },
-    "links": []
+    "links": [],
+    "media": {
+      "images": [
+        {
+          "src": "/app/assets/media/videography/01.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/videography/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ],
+      "videos": [
+        {
+          "url": "",
+          "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        }
+      ]
+    }
   }
 ]

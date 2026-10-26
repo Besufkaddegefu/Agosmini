@@ -5,7 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 from PIL import Image
 
-from app import bookings, ethcal, hours, notify
+from app import bookings, catalog, ethcal, hours, notify
 from app.main import app
 
 H = {"x-dev-user": json.dumps({"id": 42, "first_name": "Abebe", "username": "abebe"})}
@@ -55,6 +55,19 @@ def test_config_has_everything(client):
     assert prices["limo_royal"] == 50000
     assert prices["photo_standard"] == 16000
     assert j["user"]["id"] == 42 and "payment_notice" in j["strings"] and j["bank"]["deposit_percent"] == 50
+    assert all(p["media"] == {"images": [], "videos": []} for p in j["packages"])
+
+
+def test_media_normalization_keeps_only_safe_urls():
+    package = {"id": "demo", "media": {
+        "images": [{"src": "/app/assets/media/demo/01.webp", "alt": {"en": "Example", "am": "ምሳሌ"}},
+                   {"src": "javascript:alert(1)"}],
+        "videos": [{"url": "https://cdn.example/video.mp4", "poster": "/app/assets/media/demo/poster.webp"},
+                   {"url": "http://insecure.example/video.mp4"},
+                   {"url": "https://www.youtube.com/watch?v=abc"}]}}
+    safe = catalog._with_safe_media(package)
+    assert [i["src"] for i in safe["media"]["images"]] == ["/app/assets/media/demo/01.webp"]
+    assert [v["url"] for v in safe["media"]["videos"]] == ["https://cdn.example/video.mp4", "https://www.youtube.com/watch?v=abc"]
 
 
 def test_static_app_served(client):
