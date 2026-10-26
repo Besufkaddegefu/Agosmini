@@ -140,9 +140,15 @@ function mediaHtml(p) {
     const url = item.url;
     const youtube = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]+)/);
     const vimeo = url.match(/vimeo\.com\/(\d+)/);
-    if (youtube || vimeo) {
-      const embed = youtube ? `https://www.youtube.com/embed/${youtube[1]}` : `https://player.vimeo.com/video/${vimeo[1]}`;
-      return `<div class="media-video"><iframe src="${esc(embed)}" title="${esc(title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p>${esc(title)}</p></div>`;
+    const tiktok = url.match(/tiktok\.com\/@[^/]+\/video\/(\d+)/);
+    if (youtube || vimeo || tiktok) {
+      const embed = youtube ? `https://www.youtube.com/embed/${youtube[1]}`
+        : vimeo ? `https://player.vimeo.com/video/${vimeo[1]}`
+        : `https://www.tiktok.com/player/v1/${tiktok[1]}?description=1`;
+      return `<div class="media-video"><iframe src="${esc(embed)}" title="${esc(title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe><p>${esc(title)}</p></div>`;
+    }
+    if (/tiktok\.com\//.test(url)) {
+      return `<div class="media-video media-external"><div class="media-external-icon">▶</div><p>${esc(title)}</p><a class="btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${S.lang === "am" ? "ቪዲዮውን ይክፈቱ" : "Open video"}</a></div>`;
     }
     return `<div class="media-video"><video controls playsinline preload="metadata"${item.poster ? ` poster="${esc(item.poster)}"` : ""}><source src="${esc(url)}"></video><p>${esc(title)}</p></div>`;
   }).join("");

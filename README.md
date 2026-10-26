@@ -147,8 +147,13 @@ package ID:
 ```
 
 Images must use `/app/assets/...` paths or HTTPS URLs. Videos must use HTTPS
-URLs. YouTube and Vimeo links are embedded with a poster/preview; direct HTTPS
-video files use the browser's inline player. Keep media optimized for mobile,
+URLs. YouTube, Vimeo, and full TikTok video links such as
+`https://www.tiktok.com/@account/video/123456789` are embedded with a
+preview/player. TikTok shortened links such as `https://vm.tiktok.com/...`
+cannot be converted to an embedded player without first resolving their
+redirect; they are shown with an `Open video` link instead. Use the full
+TikTok video URL when inline playback is required. Direct HTTPS video files
+use the browser's inline player. Keep media optimized for mobile,
 and publish only photos/videos for which AGOS has permission. The ready-made
 package folders and their complete mapping are documented in
 [webapp/assets/media/README.md](./webapp/assets/media/README.md).

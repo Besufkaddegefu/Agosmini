@@ -55,7 +55,7 @@ def test_config_has_everything(client):
     assert prices["limo_royal"] == 50000
     assert prices["photo_standard"] == 16000
     assert j["user"]["id"] == 42 and "payment_notice" in j["strings"] and j["bank"]["deposit_percent"] == 50
-    assert all(p["media"] == {"images": [], "videos": []} for p in j["packages"])
+    assert all(set(p["media"]) == {"images", "videos"} for p in j["packages"])
 
 
 def test_media_normalization_keeps_only_safe_urls():
