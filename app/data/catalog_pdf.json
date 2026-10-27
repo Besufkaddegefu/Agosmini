@@ -25,12 +25,12 @@
       ],
       "videos": [
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7656368390524701970",
+          "src": "/app/assets/media/decor_hospital/video01.mp4",
           "title": {"en": "Hospital decoration", "am": "የሆስፒታል ዲኮር ምሳሌ"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7656368390524701970",
-          "title": {"en": "Previous home decoration service", "am": "የቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+          "src": "/app/assets/media/decor_hospital/video02.mp4",
+          "title": {"en": "Hospital decoration", "am": "የሆስፒታል ዲኮር ምሳሌ"}
         }
       ]
     }
@@ -62,15 +62,15 @@
       ],
       "videos": [
         {
-          "url": "https://vm.tiktok.com/ZMA2PV8vt",
+          "src": "/app/assets/media/decor_basic/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "የቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vt.tiktok.com/ZSmoGPTJ6",
+          "src": "/app/assets/media/decor_basic/video02.mp4",
           "title": {"en": "Previous home decoration service", "am": "የቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7595961687560310028?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/decor_basic/video03.mp4",
           "title": {"en": "Previous home decoration service", "am": "የቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -102,27 +102,27 @@
       ],
       "videos": [
         {
-          "url": "https://vm.tiktok.com/ZMA2PQp4k",
+          "src": "/app/assets/media/decor_deluxe/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vm.tiktok.com/ZMA2PPv9g",
+          "src": "/app/assets/media/decor_deluxe/video02.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vm.tiktok.com/ZMA2PbLWU",
+          "src": "/app/assets/media/decor_deluxe/video03.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7633445361310256392?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/decor_deluxe/video04.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vm.tiktok.com/ZMA2PG9Nd",
+          "src": "/app/assets/media/decor_deluxe/video05.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7582229397864975672?is_from_webapp=1&sender_device=pc",
+          "src": "/app/assets/media/decor_deluxe/video06.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -154,39 +154,39 @@
       ],
       "videos": [
         {
-          "url": "https://vm.tiktok.com/ZMA2Pb9Pp",
+          "src": "/app/assets/media/decor_premium/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vm.tiktok.com/ZMA2Pq1V8",
+          "src": "/app/assets/media/decor_premium/video02.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vt.tiktok.com/ZSmos7LjV",
+          "src": "/app/assets/media/decor_premium/video03.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vm.tiktok.com/ZMA2PqRTh",
+          "src": "/app/assets/media/decor_premium/video04.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://vt.tiktok.com/ZSmostdmb",
+          "src": "/app/assets/media/decor_premium/video05.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7637532507528858887?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/decor_premium/video06.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7608210303792188690?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/decor_premium/video07.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7551840674677591352?_r=1&_t=ZM-914EEFmhm03",
+          "src": "/app/assets/media/decor_premium/video08.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7641236350917856519?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/decor_premium/video09.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -218,11 +218,11 @@
       ],
       "videos": [
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7658305988734225671?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/decor_special/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         },
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7657206210651016455?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/decor_special/video02.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -254,7 +254,7 @@
       ],
       "videos": [
         {
-          "url": "",
+          "src": "/app/assets/media/limo_grand/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -286,7 +286,7 @@
       ],
       "videos": [
         {
-          "url": "https://www.tiktok.com/@agos_postpartumcare/video/7566665605512809740?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/limo_special/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -318,7 +318,7 @@
       ],
       "videos": [
         {
-          "url": "https://www.tiktok.com/@gracystore12/video/7657271549036137749?is_from_webapp=1&sender_device=pc&web_id=7630899321995806229",
+          "src": "/app/assets/media/limo_royal/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -350,7 +350,7 @@
       ],
       "videos": [
         {
-          "url": "",
+          "src": "/app/assets/media/photo_digital/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -382,7 +382,7 @@
       ],
       "videos": [
         {
-          "url": "",
+          "src": "/app/assets/media/photo_standard/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -414,7 +414,7 @@
       ],
       "videos": [
         {
-          "url": "",
+          "src": "/app/assets/media/photo_premium/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
@@ -446,7 +446,7 @@
       ],
       "videos": [
         {
-          "url": "",
+          "src": "/app/assets/media/videography/video01.mp4",
           "title": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ]
