@@ -49,7 +49,7 @@ def _with_safe_media(package: dict) -> dict:
     for item in media.get("videos", []):
         if not isinstance(item, dict):
             continue
-        url = _safe_media_url(item.get("url"), local_prefix=None)
+        url = _safe_media_url(item.get("url") or item.get("src"))
         poster = _safe_media_url(item.get("poster"))
         if url:
             video = {"url": url, "title": _localized_text(item.get("title"))}

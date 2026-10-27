@@ -132,7 +132,7 @@ function pkgCard(p) {
 
 function mediaHtml(p) {
   const images = (p.media?.images || []).filter((item) => item?.src);
-  const videos = (p.media?.videos || []).filter((item) => /^https:\/\//.test(item?.url || ""));
+  const videos = (p.media?.videos || []).filter((item) => /^(?:https:\/\/|\/app\/assets\/)/.test(item?.url || ""));
   const gallery = images.length ? `<div class="media-gallery">${images.map((item, i) =>
     `<img src="${esc(item.src)}" alt="${esc(item.alt?.[S.lang] || p.title[S.lang])}" loading="${i ? "lazy" : "eager"}">`).join("")}</div>` : "";
   const videoCards = videos.map((item) => {
@@ -156,7 +156,7 @@ function mediaHtml(p) {
 }
 
 function screenService(svc) {
-  return `${crumb("", stripEmoji(ui("back")))}${offlineNotice()}<h1>${esc(ui("btns")[SERVICES.indexOf(svc)])}</h1><p class="lead">${esc(t("choosepkg"))}</p>${pkgs(svc).map(pkgCard).join("")}`;
+  return `${crumb("", stripEmoji(ui("back")))}${offline() ? offlineNotice() : ""}<h1>${esc(ui("btns")[SERVICES.indexOf(svc)])}</h1><p class="lead">${esc(t("choosepkg"))}</p>${pkgs(svc).map(pkgCard).join("")}`;
 }
 
 function screenPackage(id) {
@@ -165,7 +165,7 @@ function screenPackage(id) {
     ? `<button class="btn primary" disabled title="${esc(t("bookingClosed"))}">${esc(ui("book_now"))}</button>`
     : `<button class="btn primary" data-act="book" data-pkg="${p.id}">${esc(ui("book_now"))}</button>`;
   return {
-    html: `${crumb("svc/" + p.service, stripEmoji(S.cfg.strings.back_to_packages[S.lang]))}${offlineNotice()}${mediaHtml(p)}<article class="card rich">${renderMd(p.text[S.lang])}</article>
+    html: `${crumb("svc/" + p.service, stripEmoji(S.cfg.strings.back_to_packages[S.lang]))}${offline() ? offlineNotice() : ""}${mediaHtml(p)}<article class="card rich">${renderMd(p.text[S.lang])}</article>
       <button class="btn ghost" data-go="">${esc(ui("back"))}</button>`,
     bar: action,
   };

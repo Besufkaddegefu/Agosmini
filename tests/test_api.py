@@ -62,12 +62,13 @@ def test_media_normalization_keeps_only_safe_urls():
     package = {"id": "demo", "media": {
         "images": [{"src": "/app/assets/media/demo/01.webp", "alt": {"en": "Example", "am": "ምሳሌ"}},
                    {"src": "javascript:alert(1)"}],
-        "videos": [{"url": "https://cdn.example/video.mp4", "poster": "/app/assets/media/demo/poster.webp"},
+        "videos": [{"src": "/app/assets/media/demo/video.mp4"},
+                   {"url": "https://cdn.example/video.mp4", "poster": "/app/assets/media/demo/poster.webp"},
                    {"url": "http://insecure.example/video.mp4"},
                    {"url": "https://www.youtube.com/watch?v=abc"}]}}
     safe = catalog._with_safe_media(package)
     assert [i["src"] for i in safe["media"]["images"]] == ["/app/assets/media/demo/01.webp"]
-    assert [v["url"] for v in safe["media"]["videos"]] == ["https://cdn.example/video.mp4", "https://www.youtube.com/watch?v=abc"]
+    assert [v["url"] for v in safe["media"]["videos"]] == ["/app/assets/media/demo/video.mp4", "https://cdn.example/video.mp4", "https://www.youtube.com/watch?v=abc"]
 
 
 def test_static_app_served(client):
