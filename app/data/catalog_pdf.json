@@ -58,6 +58,26 @@
         {
           "src": "/app/assets/media/decor_basic/02.webp",
           "alt": {"en": "", "am": ""}
+        },
+        {
+          "src": "/app/assets/media/decor_basic/03.webp",
+          "alt": {"en": "", "am": ""}
+        },
+        {
+          "src": "/app/assets/media/decor_basic/04.webp",
+          "alt": {"en": "", "am": ""}
+        },
+        {
+          "src": "/app/assets/media/decor_basic/05.webp",
+          "alt": {"en": "", "am": ""}
+        },
+        {
+          "src": "/app/assets/media/decor_basic/06.webp",
+          "alt": {"en": "", "am": ""}
+        },
+        {
+          "src": "/app/assets/media/decor_basic/07.webp",
+          "alt": {"en": "", "am": ""}
         }
       ],
       "videos": [
@@ -97,6 +117,18 @@
         },
         {
           "src": "/app/assets/media/decor_deluxe/02.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/decor_deluxe/03.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/decor_deluxe/04.webp",
+          "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
+        },
+        {
+          "src": "/app/assets/media/decor_deluxe/05.webp",
           "alt": {"en": "Previous home decoration service", "am": "ቀደም ሲል የተሰራ የቤት ዲኮር አገልግሎት"}
         }
       ],
